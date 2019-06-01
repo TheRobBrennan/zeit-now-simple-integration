@@ -14,9 +14,9 @@ const { withUiHook, htm } = require('@zeit/integration-utils')  // https://zeit.
 
 */
 module.exports = withUiHook(async ({ payload, zeitClient }) => {
-  const { action } = payload
+  const { action } = payload  // See https://zeit.co/docs/integrations#understanding-uihooks/http-payload for more payload details
 
-  // Initialize metadata for this configuration ID
+  // Initialize metadata store for this configuration ID (max size 100 KB)
 	const metadata = await zeitClient.getMetadata();
 
   // Modify our count value as desired
@@ -35,6 +35,12 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
       metadata.count = (metadata.count || 0)
       break
   }
+
+  /*
+
+    Want to create a new secret/environment variable? See https://zeit.co/docs/integrations#project-level-apis/utilities-inside-zeit-integration-utils
+
+  */
 
   // Store our count value in the metadata for this specific configuration ID
   await zeitClient.setMetadata(metadata)
