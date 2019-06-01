@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run start:dev",
-    "start:dev": "now dev -p 5005"
+    "start:dev": "now dev -p 5005",
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme",
   "dependencies": {
     "@zeit/integration-utils": "latest"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }
