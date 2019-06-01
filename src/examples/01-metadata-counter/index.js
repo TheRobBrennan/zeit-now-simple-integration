@@ -41,3 +41,5 @@ module.exports = async ({ payload, zeitClient }) => {
     </Page>
   `
 }
+
+module.exports.doSomething = () => { return "doSomething" }

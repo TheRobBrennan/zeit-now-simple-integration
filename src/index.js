@@ -2,5 +2,3 @@ const { withUiHook, htm } = require('@zeit/integration-utils')  // https://zeit.
 const metadataCounter = require('./examples/01-metadata-counter')
 
 module.exports = withUiHook(metadataCounter)
-
-module.exports.doSomething = function () { return "doSomething" }
