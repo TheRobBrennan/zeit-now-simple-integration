@@ -1,0 +1,17 @@
+{
+  "name": "zeit-now-simple-integration",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheRobBrennan/zeit-now-simple-integration.git"
+  },
+  "author": "Rob Brennan <rob@therobbrennan.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheRobBrennan/zeit-now-simple-integration/issues"
+  },
+  "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme"
+}
