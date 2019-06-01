@@ -38,6 +38,6 @@ Select the account you would like to add this integration to. Click `Add`.
 
 ![__images/safari-01.png](__images/safari-01.png)
 
-If you view your locally running integration in the in Safari, you will see:
+If you view your locally running integration in Safari, you will see:
 
 ![__images/safari-02.png](__images/safari-02.png)
