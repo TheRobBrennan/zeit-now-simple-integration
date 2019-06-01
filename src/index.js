@@ -54,3 +54,5 @@ module.exports = withUiHook(async ({ payload, zeitClient }) => {
     </Page>
   `
 })
+
+module.exports.doSomething = function () { return "doSomething" }

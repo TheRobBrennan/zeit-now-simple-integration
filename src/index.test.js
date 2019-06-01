@@ -1,7 +1,10 @@
-const Integration = require('./index')
+const integration = require('./index')
 
 describe(`Our ZEIT Now Integration`, () => {
-  it('should be defined', () => {
-    expect(Integration).toBeDefined()
+  it(`should do something`, () => {
+    const result = integration.doSomething()
+    const expectedResult = "doSomething"
+
+    expect(result).toEqual(expectedResult)
   })
 })
