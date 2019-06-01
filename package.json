@@ -2,7 +2,8 @@
   "name": "zeit-now-simple-integration",
   "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run start:dev",
+    "start:dev": "now dev -p 5005"
   },
   "repository": {
     "type": "git",
@@ -13,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/TheRobBrennan/zeit-now-simple-integration/issues"
   },
-  "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme"
+  "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme",
+  "dependencies": {
+    "@zeit/integration-utils": "latest"
+  }
 }
