@@ -4,7 +4,9 @@
   "scripts": {
     "start": "npm run start:dev",
     "start:dev": "now dev -p 5005",
-    "test": "npx jest"
+    "test": "npx jest",
+    "test:coverage": "npx jest --coverage",
+    "test:coverage:html": "npx jest --coverage && open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
