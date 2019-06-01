@@ -1,6 +1,6 @@
 # Welcome
 
-This project is based off the tutorial available at [https://zeit.co/docs/integrations#creating-an-integration](https://zeit.co/docs/integrations#creating-an-integration)
+This project is based on the tutorial available at [https://zeit.co/docs/integrations#creating-an-integration](https://zeit.co/docs/integrations#creating-an-integration)
 
 **NOTE: According to the above [tutorial](https://zeit.co/docs/integrations#creating-an-integration), Safari has some issues when working with UIHooks running on `localhost`. Use a different web browser for local development.**
 
@@ -34,4 +34,10 @@ Select the account you would like to add this integration to. Click `Add`.
 
 ### Test your integration
 
-### Publish your integration
+**IMPORTANT: DO NOT USE SAFARI** when trying to view your integration on `localhost`
+
+![__images/safari-01.png](__images/safari-01.png)
+
+If you view your locally running integration in Safari, you will see:
+
+![__images/safari-02.png](__images/safari-02.png)
