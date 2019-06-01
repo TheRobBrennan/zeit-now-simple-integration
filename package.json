@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run start:dev",
+    "start:debug": "npm run start:dev:debug",
     "start:dev": "now dev -p 5005",
+    "start:dev:debug": "now dev -p 5005 -d",
     "test": "npx jest",
     "test:coverage": "npx jest --coverage",
     "test:coverage:html": "npx jest --coverage && open ./coverage/lcov-report/index.html",
