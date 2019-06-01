@@ -2,6 +2,6 @@ const { withUiHook } = require('@zeit/integration-utils')  // https://zeit.co/do
 
 // Choose the example code you would like to run
 // const handler = require('./examples/01-metadata-counter')
-const handler = require('./examples/02-explore-integrations')
+const handler = require('./examples/02-kitchen-sink')
 
 module.exports = withUiHook(handler)
