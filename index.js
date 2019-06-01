@@ -1,9 +1,5 @@
 const { withUiHook, htm } = require('@zeit/integration-utils')  // https://zeit.co/docs/integrations#htm-support/why-use-htm
-
-let count = 0
-
 /*
-  Every time the button is clicked, the UIHook is called - updating the counter and providing the updated HTML as a response.
 
   "A UIHook accepts a set of inputs, such as a token or projectId, and sends back a string of HTML, including components, as the response.
 
@@ -17,12 +13,38 @@ let count = 0
   By using htm, we can effectively write JSX as we want - even using array.map(), passing prop names/values, etc - without transpilation.
 
 */
-module.exports = withUiHook(({ payload }) => {
-  count++
+module.exports = withUiHook(async ({ payload, zeitClient }) => {
+  const { action } = payload
+
+  // Initialize metadata for this configuration ID
+	const metadata = await zeitClient.getMetadata();
+
+  // Modify our count value as desired
+  switch (action) {
+    case 'increment':
+      metadata.count++
+      break
+    case 'decrement':
+      metadata.count--
+      break
+    case 'reset':
+      metadata.count = 0
+      break
+    default:
+      // Use the persisted value if one exists
+      metadata.count = (metadata.count || 0)
+      break
+  }
+
+  // Store our count value in the metadata for this specific configuration ID
+  await zeitClient.setMetadata(metadata)
+
   return htm`
     <Page>
-      <P>Counter: ${count}</P>
-      <Button>Count Me</Button>
+      <P>Counter: ${metadata.count}</P>
+      <Button action="decrement">-</Button>
+      <Button action="reset">0</Button>
+      <Button action="increment">+</Button>
     </Page>
   `
 })
