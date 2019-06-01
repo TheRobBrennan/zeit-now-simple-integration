@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/TheRobBrennan/zeit-now-simple-integration/issues"
   },
-  "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme"
+  "homepage": "https://github.com/TheRobBrennan/zeit-now-simple-integration#readme",
+  "dependencies": {
+    "@zeit/integration-utils": "^0.6.1"
+  }
 }
