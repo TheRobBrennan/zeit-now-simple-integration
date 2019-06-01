@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@zeit/integration-utils@^0.6.1":
+"@zeit/integration-utils@latest":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@zeit/integration-utils/-/integration-utils-0.6.1.tgz#bddb2104c525060a1904186c0b3729bc046a2aad"
   dependencies:
