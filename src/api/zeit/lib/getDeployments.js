@@ -3,9 +3,8 @@ const timingEnd = require('../../../lib/timingEnd')
 
 // https://zeit.co/docs/api#endpoints/deployments/list-deployments
 module.exports = async (zeitClient, limit = 5) => {
-  const timeTrackingLabel = "ZEIT Now - getDeployments"
-  // Prevent against
   let apiUrl = `/v4/now/deployments?limit=${limit}`
+  const timeTrackingLabel = "ZEIT Now - getDeployments"
 
   // Start timing our API call
   timingBegin(timeTrackingLabel)
