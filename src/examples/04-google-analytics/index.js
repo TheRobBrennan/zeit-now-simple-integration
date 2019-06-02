@@ -5,10 +5,12 @@ const zeit = require('../../api/zeit/zeit-now-api')
 
 // Useful functions and libraries
 const { appIdentifier } = require('./lib/constants')
+// TODO: Consolidate logging
 const logError = require('../../lib/logError')
 const logMessage = require('../../lib/logMessage')
 const logObject = require('../../lib/logObject')
 const logValue = require('../../lib/logValue')
+// TODO: Consolidate configuration
 const readConfiguration = require('./lib/configuration/readConfiguration')
 const saveConfiguration = require('./lib/configuration/saveConfiguration')
 
