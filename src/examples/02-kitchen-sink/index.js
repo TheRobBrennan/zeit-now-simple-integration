@@ -1,8 +1,7 @@
 const { htm } = require('@zeit/integration-utils')
 
 // Useful functions and libraries
-const logObject = require('../../lib/logObject')
-const logValue = require('../../lib/logValue')
+const log = require('../../lib/log/log')
 
 // Custom components
 const ZEITKitchenSink = require('./components/ZEITKitchenSink')
@@ -11,8 +10,8 @@ module.exports = async ({ payload }) => {
   const { action, clientState } = payload
 
   // What are we working with?
-  logValue(action, "action: ")
-  logObject(clientState, 'clientState')
+  log.value(action, "action: ")
+  log.entity(clientState, 'clientState')
 
   return htm`
     <Page>

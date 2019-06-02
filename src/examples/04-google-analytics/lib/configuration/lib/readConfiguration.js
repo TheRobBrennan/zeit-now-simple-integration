@@ -1,4 +1,4 @@
-const { appIdentifier } = require('../constants')
+const { appIdentifier } = require('../../constants')
 const readConfigurationError = require('./readConfigurationError')
 const readConfigurationSuccess = require('./readConfigurationSuccess')
 

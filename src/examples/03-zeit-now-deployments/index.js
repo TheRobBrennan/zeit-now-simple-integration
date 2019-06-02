@@ -4,8 +4,7 @@ const { htm } = require('@zeit/integration-utils')
 const zeit = require('../../api/zeit/zeit-now-api')
 
 // Useful functions and libraries
-const logObject = require('../../lib/logObject')
-const logValue = require('../../lib/logValue')
+const log = require('../../lib/log/log')
 
 module.exports = async ({ payload, zeitClient }) => {
   let timingResultInMs
@@ -14,14 +13,14 @@ module.exports = async ({ payload, zeitClient }) => {
   const { action, clientState } = payload
 
   // What are we working with?
-  logValue(action, 'action: ')
-  logObject(clientState, 'clientState')
+  log.value(action, 'action: ')
+  log.entity(clientState, 'clientState')
 
   // Grab our deployments
-  console.log(`Requesting data for up to ${NUMBER_OF_DEPLOYMENTS} deployment(s)...`)
+  log.message(`Requesting data for up to ${NUMBER_OF_DEPLOYMENTS} deployment(s)...`)
   const deployments = await zeit.getDeployments(zeitClient, NUMBER_OF_DEPLOYMENTS)
   timingResultInMs = Date.now() - startOfRequest
-  console.log(`...received data for ${deployments.length} deployment(s)`)
+  log.message(`...received data for ${deployments.length} deployment(s)`)
 
   return htm`
     <Page>
