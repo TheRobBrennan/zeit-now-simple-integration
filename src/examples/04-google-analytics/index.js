@@ -6,9 +6,8 @@ const zeit = require('../../api/zeit/zeit-now-api')
 // Useful functions and libraries
 const { appIdentifier } = require('./lib/constants')
 const log = require('../../lib/log/log')
-// TODO: Consolidate configuration
-const readConfiguration = require('./lib/configuration/readConfiguration')
-const saveConfiguration = require('./lib/configuration/saveConfiguration')
+const configuration = require('./lib/configuration/configuration')
+const { readConfiguration, saveConfiguration } = configuration
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
