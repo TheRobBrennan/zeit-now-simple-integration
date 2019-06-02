@@ -7,8 +7,7 @@ const renderContent = require('./lib/render-content/renderContent')
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
-  // TODO: Grab clientState from payload
-  const { action } = payload
+  const { action, clientState } = payload
   const { readConfiguration, saveConfiguration } = configuration
 
   // Initialize metadata store for this specific integration configuration (max size 100 KB)
@@ -25,6 +24,5 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error({ error })
   }
 
-  // TODO: Pass clientState to renderContent
-  return htm`<Page>${renderContent({ action })}</Page>`
+  return htm`<Page>${renderContent({ action, clientState })}</Page>`
 }

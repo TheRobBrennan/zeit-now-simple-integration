@@ -6,17 +6,16 @@ const log = require('../../../../lib/log/log')
 const renderGAConfiguration = require('./lib/renderGAConfiguration')
 const renderWelcome = require('./lib/renderWelcome')
 
-// TODO: Add clientState as an argument
-module.exports = ({ action }) => {
+module.exports = ({ action, clientState }) => {
   let output
 
   log.message({ message: `${appIdentifier} renderContent received action "${action}"` })
+  log.entity({ obj: clientState, label: `${appIdentifier} renderContent received clientState ` })
 
   switch (action) {
     case supportedActions["create-ga-secret"]: // Create Google Analytics secret
     case supportedActions.view:  // Initial load
-      // TODO: Pass clientState to our GA component
-      output = htm`${renderWelcome()} ${renderGAConfiguration()}`
+      output = htm`${renderWelcome()} ${renderGAConfiguration({ clientState })}`
       break
     default:
       break

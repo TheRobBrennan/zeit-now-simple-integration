@@ -2,9 +2,9 @@ const { htm } = require('@zeit/integration-utils')
 const { appIdentifier, supportedActions } = require('../../constants')
 const log = require('../../../../../lib/log/log')
 
-// TODO: Add clientState as an argument
-module.exports = () => {
+module.exports = ({ clientState }) => {
   log.message({ message: `${appIdentifier} rendering Google Analytics configuration` })
+  log.entity({ obj: clientState, label: `${appIdentifier} renderGAConfiguration received clientState ` })
   // TODO: Use clientState to populate values of form field
   // TODO: Add project selector
   // TODO: Disable button until a valid tracking ID and secret have been entered
