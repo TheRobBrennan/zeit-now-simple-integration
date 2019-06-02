@@ -25,8 +25,7 @@ module.exports = async ({ payload, zeitClient }) => {
 
   return htm`
     <Page>
-      <H1>[DEMO] Google Analytics</H1>
-      <B>${timingResultInMs}ms</B>
+      <B>Page loaded in ${timingResultInMs}ms</B>
     </Page>
   `
 }
