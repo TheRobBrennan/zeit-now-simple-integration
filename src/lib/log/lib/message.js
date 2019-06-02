@@ -1,3 +1,3 @@
-module.exports = ({ message }) => {
+module.exports = ({ message = '' }) => {
   console.log(`${message}`)
 }

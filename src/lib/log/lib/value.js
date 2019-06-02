@@ -1,3 +1,3 @@
-module.exports = ({ value, label }) => {
+module.exports = ({ value = '', label = '' }) => {
   console.log(`${label}${value}`)
 }
