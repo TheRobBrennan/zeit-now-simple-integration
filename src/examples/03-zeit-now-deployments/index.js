@@ -7,8 +7,6 @@ const zeit = require('../../api/zeit/zeit-now-api')
 const logObject = require('../../lib/logObject')
 const logValue = require('../../lib/logValue')
 
-// Custom components
-
 module.exports = async ({ payload, zeitClient }) => {
   let timingResultInMs
   const NUMBER_OF_DEPLOYMENTS = 100
