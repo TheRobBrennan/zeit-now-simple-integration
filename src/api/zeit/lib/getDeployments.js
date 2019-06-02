@@ -1,5 +1,4 @@
-const timingBegin = require('../../../lib/timingBegin')
-const timingEnd = require('../../../lib/timingEnd')
+const timing = require('../../../lib/timing/timing')
 
 // https://zeit.co/docs/api#endpoints/deployments/list-deployments
 module.exports = async (zeitClient, limit = 5) => {
@@ -7,7 +6,7 @@ module.exports = async (zeitClient, limit = 5) => {
   const timeTrackingLabel = "ZEIT Now - getDeployments"
 
   // Start timing our API call
-  timingBegin(timeTrackingLabel)
+  timing.begin(timeTrackingLabel)
 
   // API
   const { deployments } = await zeitClient.fetchAndThrow(apiUrl, {
@@ -15,7 +14,7 @@ module.exports = async (zeitClient, limit = 5) => {
   })
 
   // End timing of our API call
-  timingEnd(timeTrackingLabel)
+  timing.end(timeTrackingLabel)
 
   // Return our data
   return Promise.resolve(deployments)
