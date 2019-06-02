@@ -1,7 +1,7 @@
 const timing = require('../../../lib/timing/timing')
 
 // https://zeit.co/docs/api#endpoints/deployments/list-deployments
-module.exports = async (zeitClient, limit = 5) => {
+module.exports = async ({ zeitClient, limit = 5 }) => {
   let apiUrl = `/v4/now/deployments?limit=${limit}`
   const timeTrackingLabel = "ZEIT Now - getDeployments"
 
