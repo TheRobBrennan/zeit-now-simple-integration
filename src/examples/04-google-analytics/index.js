@@ -1,20 +1,15 @@
 const { htm } = require('@zeit/integration-utils')
 
-// API
-const zeit = require('../../api/zeit/zeit-now-api')
-
 // Useful functions and libraries
 const { appIdentifier } = require('./lib/constants')
 const log = require('../../lib/log/log')
 const configuration = require('./lib/configuration/configuration')
 const { readConfiguration, saveConfiguration } = configuration
+const renderContent = require('./lib/render-content/renderContent')
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
   const { action } = payload
-
-  // DEBUG
-  log.value(action, `${appIdentifier} Page received action: `)
 
   // Initialize metadata store for this specific integration configuration (max size 100 KB)
   try {
@@ -30,12 +25,5 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error(e)
   }
 
-  // DEBUG
-  log.message(`${appIdentifier} Page render complete`)
-
-  // TODO: Find a way to programmatically display content 😁
-  return htm`
-    <Page>
-    </Page>
-  `
+  return htm`<Page>${renderContent(action)}</Page>`
 }
