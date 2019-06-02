@@ -4,7 +4,7 @@ const log = require('../../../../../lib/log/log')
 
 // TODO: Add clientState as an argument
 module.exports = () => {
-  log.message(`${appIdentifier} rendering Google Analytics configuration`)
+  log.message({ message: `${appIdentifier} rendering Google Analytics configuration` })
   // TODO: Use clientState to populate values of form field
   // TODO: Add project selector
   // TODO: Disable button until a valid tracking ID and secret have been entered

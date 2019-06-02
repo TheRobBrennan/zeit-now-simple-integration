@@ -13,18 +13,18 @@ module.exports = async ({ payload, zeitClient }) => {
 
   // Initialize metadata store for this specific integration configuration (max size 100 KB)
   try {
-    metadata = await readConfiguration(zeitClient)
-  } catch (e) {
-    log.error(e)
+    metadata = await readConfiguration({ zeitClient })
+  } catch (error) {
+    log.error({ error })
   }
 
   // Store our metadata for this specific integration configuration
   try {
-    await saveConfiguration(zeitClient, metadata)
-  } catch (e) {
-    log.error(e)
+    await saveConfiguration({ zeitClient, metadata })
+  } catch (error) {
+    log.error({ error })
   }
 
   // TODO: Pass clientState to renderContent
-  return htm`<Page>${renderContent(action)}</Page>`
+  return htm`<Page>${renderContent({ action })}</Page>`
 }

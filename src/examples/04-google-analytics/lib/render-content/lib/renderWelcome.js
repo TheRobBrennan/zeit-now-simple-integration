@@ -4,7 +4,7 @@ const log = require('../../../../../lib/log/log')
 const Welcome = require('../../../components/Welcome')
 
 module.exports = () => {
-  log.message(`${appIdentifier} rendering Welcome`)
+  log.message({ message: `${appIdentifier} rendering Welcome` })
   return htm`
     <${Welcome} message=${"Welcome"} tag=${"H1"} />
     <P>Use this integration to configure Google Analytics with your ZEIT Now projects.</P>

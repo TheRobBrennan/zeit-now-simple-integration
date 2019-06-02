@@ -7,10 +7,10 @@ const renderGAConfiguration = require('./lib/renderGAConfiguration')
 const renderWelcome = require('./lib/renderWelcome')
 
 // TODO: Add clientState as an argument
-module.exports = (action) => {
+module.exports = ({ action }) => {
   let output
 
-  log.message(`${appIdentifier} renderContent received action "${action}"`)
+  log.message({ message: `${appIdentifier} renderContent received action "${action}"` })
 
   switch (action) {
     case supportedActions["create-ga-secret"]: // Create Google Analytics secret
