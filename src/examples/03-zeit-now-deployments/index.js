@@ -13,14 +13,14 @@ module.exports = async ({ payload, zeitClient }) => {
   const { action, clientState } = payload
 
   // What are we working with?
-  log.value(action, 'action: ')
-  log.entity(clientState, 'clientState')
+  log.value({ value: action, label: 'action: ' })
+  log.entity({ obj: clientState, label: 'clientState' })
 
   // Grab our deployments
-  log.message(`Requesting data for up to ${NUMBER_OF_DEPLOYMENTS} deployment(s)...`)
+  log.message({ message: `Requesting data for up to ${NUMBER_OF_DEPLOYMENTS} deployment(s)...` })
   const deployments = await zeit.getDeployments({ zeitClient, limit: NUMBER_OF_DEPLOYMENTS})
   timingResultInMs = Date.now() - startOfRequest
-  log.message(`...received data for ${deployments.length} deployment(s)`)
+  log.message({ message: `...received data for ${deployments.length} deployment(s)` })
 
   return htm`
     <Page>
