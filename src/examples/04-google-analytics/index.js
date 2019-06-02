@@ -7,6 +7,7 @@ const renderContent = require('./lib/render-content/renderContent')
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
+  // TODO: Grab clientState from payload
   const { action } = payload
   const { readConfiguration, saveConfiguration } = configuration
 
@@ -24,5 +25,6 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error(e)
   }
 
+  // TODO: Pass clientState to renderContent
   return htm`<Page>${renderContent(action)}</Page>`
 }
