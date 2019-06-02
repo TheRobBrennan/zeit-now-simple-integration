@@ -10,8 +10,8 @@ module.exports = async ({ payload }) => {
   const { action, clientState } = payload
 
   // What are we working with?
-  log.value(action, "action: ")
-  log.entity(clientState, 'clientState')
+  log.value({ value: action, label: "action: " })
+  log.entity({ obj: clientState, label: 'clientState' })
 
   return htm`
     <Page>
