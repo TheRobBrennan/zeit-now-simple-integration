@@ -2,7 +2,9 @@ const { htm } = require('@zeit/integration-utils')
 const { appIdentifier, supportedActions } = require('../../constants')
 const log = require('../../../../../lib/log/log')
 
+// TODO: Payload needs to be passed into GA Config
 module.exports = ({ clientState }) => {
+  // TODO: Get project and projectId values
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
   const googleAnalyticsTrackingID = trackingID || ''
   const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || ''
@@ -16,13 +18,14 @@ module.exports = ({ clientState }) => {
     label: `${appIdentifier} renderGAConfiguration received clientState `,
   })
 
-  // TODO: Add project selector
-  // TODO: Disable button until a valid tracking ID and secret have been entered
-  // TODO: Disable button if the fields match a known secret we've created using this integration
-  // TODO: Add error states/messaging
+  // Return our rendered content
+  // TODO: Break project selector and configurator into separate components
+  // TODO: Do not display configuration form if a project has not been selected
   return htm`
-    <H2>Configure Google Analytics</H2>
-    <Box display="flex" width="80%">
+  <H2>Please select a project</H2>
+  <ProjectSwitcher />
+  <H2>Configure Google Analytics</H2>
+    <Box display="flex">
       <Input name="ga-tracking-id" label="GA Tracking ID" placeholder="UA-########-##" maxLength="15" width="90%"
         value="${googleAnalyticsTrackingID}" />
       <Input name="zeit-now-secret" label="ZEIT Now secret" placeholder="GOOGLE_ANALYTICS_TRACKING_ID" width="150%"

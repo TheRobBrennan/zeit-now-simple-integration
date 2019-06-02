@@ -24,5 +24,6 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error({ error })
   }
 
+  // TODO: Payload needs to be passed into renderContent
   return htm`<Page>${renderContent({ action, clientState })}</Page>`
 }
