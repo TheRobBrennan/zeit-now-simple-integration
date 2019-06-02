@@ -31,7 +31,8 @@ module.exports = ({ clientState, payload }) => {
   return htm`
   <${ProjectSelector} />
   <${ProjectConfiguration}
+    projectID="${projectId}"
     googleAnalyticsTrackingID="${googleAnalyticsTrackingID}"
     zeitNowSecretForGoogleAnalyticsTrackingID="${zeitNowSecretForGoogleAnalyticsTrackingID}" />
-`
+  `
 }

@@ -2,11 +2,14 @@ const { htm } = require('@zeit/integration-utils')
 const { supportedActions } = require('../lib/constants')
 
 module.exports = ({
+  projectID,
   googleAnalyticsTrackingID = '',
   zeitNowSecretForGoogleAnalyticsTrackingID = '',
 }) => {
-  // TODO: Do not display configuration form if a project has not been selected
+  // Do not display configuration form if a project has not been selected
+  if (!projectID) return ''
 
+  // Display configuration form
   return htm`
     <Box display="flex" paddingTop="8px" paddingBottom="8px" />
     <H2>Configure Google Analytics</H2>
