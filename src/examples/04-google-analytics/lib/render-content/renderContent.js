@@ -2,23 +2,21 @@ const { appIdentifier } = require('../constants')
 const { htm } = require('@zeit/integration-utils')
 const log = require('../../../../lib/log/log')
 
-// Components
-const Welcome = require('../../components/Welcome')
+// Render functions
+const renderWelcome = require('./lib/renderWelcome')
 
 module.exports = (action) => {
-  let renderedOutput
+  let output
 
   log.message(`${appIdentifier} renderContent received action "${action}"`)
 
   switch (action) {
     case 'view':  // Initial load
-      renderedOutput = htm`<${Welcome} message=${"Welcome"} tag=${"H1"} />`
+      output = renderWelcome()
       break
     default:
       break
   }
 
-  log.message(`${appIdentifier} renderContent complete`)
-
-  return htm`${renderedOutput}`
+  return htm`${output}`
 }
