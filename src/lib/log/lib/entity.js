@@ -1,4 +1,4 @@
-module.exports = (obj, label = '') => {
+module.exports = ({ obj, label}) => {
   // What do we have?
   console.log(
     `${label} ${JSON.stringify(obj, null, 2)}`
