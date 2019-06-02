@@ -7,7 +7,7 @@ module.exports = async (zeitClient) => {
 
   try {
     metadata = await zeitClient.getMetadata()
-    throw new Error('Network unreachable.')  // TODO: Remove when testing proves this works automatically
+    // throw new Error('Network unreachable.')  // TODO: Remove when testing proves this works automatically
     return readConfigurationSuccess(metadata)
   } catch (e) {
     return readConfigurationError(`${appIdentifier} ERROR - Unable to read metadata: ${e.message}`)
