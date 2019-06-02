@@ -18,7 +18,7 @@ module.exports = async ({ payload, zeitClient }) => {
 
   // Grab our deployments
   log.message(`Requesting data for up to ${NUMBER_OF_DEPLOYMENTS} deployment(s)...`)
-  const deployments = await zeit.getDeployments(zeitClient, NUMBER_OF_DEPLOYMENTS)
+  const deployments = await zeit.getDeployments({ zeitClient, limit: NUMBER_OF_DEPLOYMENTS})
   timingResultInMs = Date.now() - startOfRequest
   log.message(`...received data for ${deployments.length} deployment(s)`)
 
