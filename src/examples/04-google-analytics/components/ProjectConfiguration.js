@@ -12,7 +12,7 @@ module.exports = ({
   // Display configuration form
   return htm`
     <Box display="flex" paddingTop="8px" paddingBottom="8px" />
-    <H2>Configure Google Analytics</H2>
+    <H2>Configure ZEIT Now</H2>
     <Box display="flex" paddingTop="2px">
       <Input name="ga-tracking-id" label="GA Tracking ID" placeholder="UA-########-##" maxLength="15" width="90%"
         value="${googleAnalyticsTrackingID}" />
