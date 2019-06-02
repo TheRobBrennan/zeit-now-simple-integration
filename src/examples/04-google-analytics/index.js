@@ -10,6 +10,7 @@ const logMessage = require('../../lib/logMessage')
 const logObject = require('../../lib/logObject')
 const logValue = require('../../lib/logValue')
 const readConfiguration = require('./lib/configuration/readConfiguration')
+const saveConfiguration = require('./lib/configuration/saveConfiguration')
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
@@ -25,24 +26,17 @@ module.exports = async ({ payload, zeitClient }) => {
     logError(e)
   }
 
-  // switch (action) {
-  //   case 'view':  // Initial load
-  //     console.log(`${appIdentifier} Initial load`)
-  //     break
-  //   default:
-  //     break
-  // }
-
   // Store our metadata for this specific integration configuration
-  // await zeitClient.setMetadata(metadata)
-
-  // TODO: Render initial view
-  // TODO: Render welcome screen
-  // TODO: Render page timing result
+  try {
+    await saveConfiguration(zeitClient, metadata)
+  } catch (e) {
+    logError(e)
+  }
 
   // DEBUG
   logMessage(`${appIdentifier} Page render complete`)
 
+  // TODO: Find a way to programmatically display content 😁
   return htm`
     <Page>
     </Page>
