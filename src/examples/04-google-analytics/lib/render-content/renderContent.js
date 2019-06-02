@@ -9,9 +9,11 @@ const renderWelcome = require('./lib/renderWelcome')
 module.exports = ({ action, clientState, payload }) => {
   let output
 
-  log.message({ message: `${appIdentifier} renderContent received action "${action}"` })
+  log.message({ message: `${appIdentifier} renderContent received
+    action  -> ${action}`})
   log.entity({ obj: clientState, label: `${appIdentifier} renderContent received clientState ` })
-  log.entity({ obj: payload, label: `${appIdentifier} renderContent received payload ` })
+  // log.entity({ obj: payload, label: `${appIdentifier} renderContent received payload ` })
+  log.message({ message: `${appIdentifier} renderContent received payload` })
 
   switch (action) {
     case supportedActions["create-ga-secret"]: // Create Google Analytics secret

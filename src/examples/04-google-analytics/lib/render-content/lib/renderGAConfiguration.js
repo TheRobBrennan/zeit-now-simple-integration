@@ -4,6 +4,7 @@ const log = require('../../../../../lib/log/log')
 
 module.exports = ({ clientState, payload }) => {
   // TODO: Get project and projectId values
+  const { project, projectId } = payload
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
   const googleAnalyticsTrackingID = trackingID || ''
   const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || ''
@@ -16,14 +17,18 @@ module.exports = ({ clientState, payload }) => {
     obj: clientState,
     label: `${appIdentifier} renderGAConfiguration received clientState `,
   })
-  log.entity({
-    obj: payload,
-    label: `${appIdentifier} renderGAConfiguration received payload `,
+  // log.entity({ obj: payload, label: `${appIdentifier} renderGAConfiguration received payload ` })
+  log.message({
+    message: `${appIdentifier} renderGAConfiguration received payload
+    project   -> ${JSON.stringify(project)}
+    projectId -> ${projectId}
+    `,
   })
 
-  // Return our rendered content
-  // TODO: Break project selector and configurator into separate components
+  // TODO: Create a project selector component
+  // TODO: Create a project configuration component with an isVisible prop
   // TODO: Do not display configuration form if a project has not been selected
+  // Return our rendered content
   return htm`
   <H2>Please select a project</H2>
   <ProjectSwitcher />
