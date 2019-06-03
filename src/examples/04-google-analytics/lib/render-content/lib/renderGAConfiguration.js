@@ -5,6 +5,7 @@ const log = require('../../../../../lib/log/log')
 const ProjectSelector = require('../../../components/ProjectSelector')
 const ProjectConfiguration = require('../../../components/ProjectConfiguration')
 
+// TODO: Add zeitClient prop
 module.exports = ({ clientState, payload, action }) => {
   const { project, projectId } = payload
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
@@ -30,8 +31,10 @@ module.exports = ({ clientState, payload, action }) => {
     message: `${appIdentifier} renderGAConfiguration received
   action    -> ${action}`,
   })
+  // TODO: Add logging to verify zeitClient
 
   // Return our rendered content
+  // TODO: Pass zeitClient to ProjectConfiguration
   return htm`
   <${ProjectSelector} />
   <${ProjectConfiguration}

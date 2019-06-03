@@ -1,7 +1,10 @@
 const { htm } = require('@zeit/integration-utils')
 const { supportedActions, appIdentifier } = require('../lib/constants')
 const log = require('../../../lib/log/log')
+// TODO: Import zeit-now-api
+// const zeit = require('../../api/zeit/zeit-now-api')
 
+// TODO: Add zeitClient prop
 module.exports = ({
   action,
   projectID,
@@ -15,7 +18,9 @@ module.exports = ({
   log.message({ message: `${appIdentifier} ProjectConfiguration received
   action  -> ${action}`})
 
-  // TODO: THINK - How might you handle upserting a secret?
+  // TODO: Use newly created function to upsert our secret to ZEIT Now
+  // const deployments = await zeit.upsertSecret({ zeitClient })
+  // TODO: Don't forget to wrap await in a try...catch block
 
   // Display configuration form
   return htm`
