@@ -22,26 +22,41 @@ module.exports = ({
   `,
   })
 
-  if (googleAnalyticsTrackingID && zeitNowSecretForGoogleAnalyticsTrackingID) {
-    // We need to use promises here. We cannot use async/await without creating other issues for us in the UI
-    zeit
-      .upsertSecret({
-        zeitClient,
-        projectId: projectID,
-        secret: googleAnalyticsTrackingID,
-        secretName: zeitNowSecretForGoogleAnalyticsTrackingID,
-      })
-      .then(() => {
-        upsertMessage = `Successfully created secret ${secretName}`
-      })
-      .catch(error => {
-        upsertMessage = `Unable to create secret: ${error}`
-      })
-  } else {
-    log.message(
-      `${appIdentifier} ProjectConfiguration will skip the upsert until both the secret and secret name have been submitted.`
-    )
-  }
+  // TODO: Rip all zeitClient stuff out of here if we're just rendering data
+  // console.log(`Requesting deployments with zeitClient ${JSON.stringify(zeitClient, null, 2)}`)
+
+  // TODO: Using promises
+  // const deployments = async () => await zeit.getDeployments({ zeitClient })
+  // console.log(`deployments: ${deployments}`)
+
+  // zeit.getDeployments({ zeitClient }).then(() => {
+  //   console.log(`----- GOOD -----`)
+  // }).catch(() => {
+  //   console.log(`----- ERROR -----`)
+  // })
+
+  // if (googleAnalyticsTrackingID && zeitNowSecretForGoogleAnalyticsTrackingID) {
+  //   // We need to use promises here. We cannot use async/await without creating other issues for us in the UI
+  //   // zeit
+  //   //   .upsertSecret({
+  //   //     zeitClient,
+  //   //     projectId: projectID,
+  //   //     secret: googleAnalyticsTrackingID,
+  //   //     secretName: zeitNowSecretForGoogleAnalyticsTrackingID,
+  //   //   })
+  //     // .then(() => {
+  //     //   log.message({ message: `${appIdentifier} ProjectConfiguration successfully upserted secret`})
+  //     //   upsertMessage = `Successfully created secret ${secretName}`
+  //     // })
+  //     // .catch(error => {
+  //     //   log.message({ message: `${appIdentifier} ProjectConfiguration FAILED TO UPSERT secret`})
+  //     //   upsertMessage = `Unable to create secret: ${error}`
+  //     // })
+  // } else {
+  //   log.message(
+  //     `${appIdentifier} ProjectConfiguration will skip the upsert until both the secret and secret name have been submitted.`
+  //   )
+  // }
 
   // Display configuration form
   return htm`
