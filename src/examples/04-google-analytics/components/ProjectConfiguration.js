@@ -1,8 +1,9 @@
 const { htm } = require('@zeit/integration-utils')
-const { supportedActions } = require('../lib/constants')
+const { supportedActions, appIdentifier } = require('../lib/constants')
+const log = require('../../../lib/log/log')
 
-// TODO: Need to receive an action
 module.exports = ({
+  action,
   projectID,
   googleAnalyticsTrackingID = '',
   zeitNowSecretForGoogleAnalyticsTrackingID = '',
@@ -10,11 +11,11 @@ module.exports = ({
   // Do not display configuration form if a project has not been selected
   if (!projectID) return ''
 
-  // TODO: Log action
-  // log.message({ message: `${appIdentifier} ProjectConfiguration received
-  // action  -> ${action}`})
+  // Logging
+  log.message({ message: `${appIdentifier} ProjectConfiguration received
+  action  -> ${action}`})
 
-  // TODO: THINK - how might you handle upserting a secret?
+  // TODO: THINK - How might you handle upserting a secret?
 
   // Display configuration form
   return htm`
