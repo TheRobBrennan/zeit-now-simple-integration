@@ -21,6 +21,7 @@ module.exports = ({
 
   // TODO: Use newly created function to upsert our secret to ZEIT Now
   // TODO: Pass projectId, secret, and secretName props to zeit.upsertSecret
+  // TODO: Display message success or failure in htm string below
   // try {
   //   await zeit.upsertSecret({ zeitClient })
   // } catch (error) {
