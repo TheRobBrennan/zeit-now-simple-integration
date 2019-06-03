@@ -1,6 +1,7 @@
 const { htm } = require('@zeit/integration-utils')
 const { supportedActions } = require('../lib/constants')
 
+// TODO: Need to receive an action
 module.exports = ({
   projectID,
   googleAnalyticsTrackingID = '',
@@ -8,6 +9,12 @@ module.exports = ({
 }) => {
   // Do not display configuration form if a project has not been selected
   if (!projectID) return ''
+
+  // TODO: Log action
+  // log.message({ message: `${appIdentifier} ProjectConfiguration received
+  // action  -> ${action}`})
+
+  // TODO: THINK - how might you handle upserting a secret?
 
   // Display configuration form
   return htm`

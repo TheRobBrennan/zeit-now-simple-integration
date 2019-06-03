@@ -18,6 +18,7 @@ module.exports = ({ action, clientState, payload }) => {
   switch (action) {
     case supportedActions["create-ga-secret"]: // Create Google Analytics secret
     case supportedActions.view:  // Initial load
+      // TODO: Pass action to renderGAConfiguration
       output = htm`${renderWelcome()} ${renderGAConfiguration({ clientState, payload })}`
       break
     default:

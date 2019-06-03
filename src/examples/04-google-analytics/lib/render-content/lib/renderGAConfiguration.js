@@ -5,6 +5,7 @@ const log = require('../../../../../lib/log/log')
 const ProjectSelector = require('../../../components/ProjectSelector')
 const ProjectConfiguration = require('../../../components/ProjectConfiguration')
 
+// TODO: Need to receive an action
 module.exports = ({ clientState, payload }) => {
   const { project, projectId } = payload
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
@@ -28,6 +29,7 @@ module.exports = ({ clientState, payload }) => {
   })
 
   // Return our rendered content
+  // TODO: Need to send action to ProjectConfiguration
   return htm`
   <${ProjectSelector} />
   <${ProjectConfiguration}
