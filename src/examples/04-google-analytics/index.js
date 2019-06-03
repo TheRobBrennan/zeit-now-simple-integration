@@ -4,12 +4,22 @@ const { htm } = require('@zeit/integration-utils')
 const configuration = require('./lib/configuration/configuration')
 const log = require('../../lib/log/log')
 const renderContent = require('./lib/render-content/renderContent')
-const { appIdentifier } = require('../04-google-analytics/lib/constants')
+const {
+  appIdentifier,
+  supportedActions,
+} = require('../04-google-analytics/lib/constants')
 
 module.exports = async ({ payload, zeitClient }) => {
   let metadata
+  let secretName
   const { action, clientState } = payload
   const { readConfiguration, saveConfiguration } = configuration
+
+  // Logging
+  log.message({
+    message: `${appIdentifier} Application handler received
+  action  -> ${action}`,
+  })
 
   // Initialize metadata store for this specific integration configuration (max size 100 KB)
   try {
@@ -18,33 +28,50 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error({ error })
   }
 
+  // Create our secret
   try {
-    // TODO: If we have a projectId, secret, and secret key...and the right action...let's try creating the secret
     const { projectId } = payload
 
-    if (projectId) {
-      const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
-      // TODO: REMOVE test values and replace with empty string
-      const googleAnalyticsTrackingID = trackingID || 'test'
-      const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || 'delete-this-test-secret'
+    if (action === supportedActions['create-ga-secret'] && projectId) {
+      const {
+        'ga-tracking-id': trackingID,
+        'zeit-now-secret': secretForZEITNow,
+      } = clientState
 
-      log.entity({ obj: zeitClient, label: `${appIdentifier} renderContent received zeitClient ` })
+      const googleAnalyticsTrackingID = trackingID || ''
+      const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || ''
 
-      log.message({ message: `${appIdentifier} upsert ATTEMPT with
+      // Logging
+      log.entity({
+        obj: zeitClient,
+        label: `${appIdentifier} renderContent received zeitClient `,
+      })
+
+      log.message({
+        message: `${appIdentifier} upsert ATTEMPT with
       projectId -> ${projectId}
       googleAnalyticsTrackingID -> ${googleAnalyticsTrackingID}
       zeitNowSecretForGoogleAnalyticsTrackingID - ${zeitNowSecretForGoogleAnalyticsTrackingID}
-      ` })
+      `,
+      })
 
       // This gives us something like delete-this-test-secret-a94a8fe5cc
-      const secretName = await zeitClient.ensureSecret(zeitNowSecretForGoogleAnalyticsTrackingID, googleAnalyticsTrackingID)
+      secretName = await zeitClient.ensureSecret(
+        zeitNowSecretForGoogleAnalyticsTrackingID,
+        googleAnalyticsTrackingID
+      )
       log.message({ message: `${appIdentifier} secretName: ${secretName}` })
-      await zeitClient.upsertEnv(projectId, googleAnalyticsTrackingID, secretName)
+      await zeitClient.upsertEnv(
+        projectId,
+        googleAnalyticsTrackingID,
+        secretName
+      )
       log.message({ message: `${appIdentifier} upsert COMPLETE` })
-
     }
   } catch (error) {
-    log.message({ message: `${appIdentifier} upsert FAILURE` })
+    log.message({
+      message: `${appIdentifier} Application handler upsert FAILED`,
+    })
     log.error({ error })
   }
 
@@ -55,5 +82,11 @@ module.exports = async ({ payload, zeitClient }) => {
     log.error({ error })
   }
 
-  return htm`<Page>${renderContent({ action, clientState, payload, zeitClient })}</Page>`
+  return htm`<Page>${renderContent({
+    action,
+    clientState,
+    payload,
+    zeitClient,
+    secretName,
+  })}</Page>`
 }

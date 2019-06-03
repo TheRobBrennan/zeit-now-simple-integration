@@ -8,9 +8,8 @@ const ProjectConfiguration = require('../../../components/ProjectConfiguration')
 module.exports = ({ clientState, payload, action, zeitClient }) => {
   const { project, projectId } = payload
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
-  // TODO: REMOVE test values and replace with empty string
-  const googleAnalyticsTrackingID = trackingID || 'test'
-  const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || 'delete-test'
+  const googleAnalyticsTrackingID = trackingID || ''
+  const zeitNowSecretForGoogleAnalyticsTrackingID = secretForZEITNow || ''
 
   // Logging
   log.message({
