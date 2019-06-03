@@ -1,7 +1,6 @@
 const { htm } = require('@zeit/integration-utils')
 const { supportedActions, appIdentifier } = require('../lib/constants')
 const log = require('../../../lib/log/log')
-
 // API
 const zeit = require('../../../api/zeit/zeit-now-api')
 
@@ -16,17 +15,33 @@ module.exports = ({
   if (!projectID) return ''
 
   // Logging
-  log.message({ message: `${appIdentifier} ProjectConfiguration received
-  action  -> ${action}`})
+  log.message({
+    message: `${appIdentifier} ProjectConfiguration received
+  action    -> ${action}
+  projectID -> ${projectID}
+  `,
+  })
 
-  // TODO: Use newly created function to upsert our secret to ZEIT Now
-  // TODO: Pass projectId, secret, and secretName props to zeit.upsertSecret
-  // TODO: Display message success or failure in htm string below
-  // try {
-  //   await zeit.upsertSecret({ zeitClient })
-  // } catch (error) {
-  //   log.error({ error })
-  // }
+  if (googleAnalyticsTrackingID && zeitNowSecretForGoogleAnalyticsTrackingID) {
+    // We need to use promises here. We cannot use async/await without creating other issues for us in the UI
+    zeit
+      .upsertSecret({
+        zeitClient,
+        projectId: projectID,
+        secret: googleAnalyticsTrackingID,
+        secretName: zeitNowSecretForGoogleAnalyticsTrackingID,
+      })
+      .then(() => {
+        upsertMessage = `Successfully created secret ${secretName}`
+      })
+      .catch(error => {
+        upsertMessage = `Unable to create secret: ${error}`
+      })
+  } else {
+    log.message(
+      `${appIdentifier} ProjectConfiguration will skip the upsert until both the secret and secret name have been submitted.`
+    )
+  }
 
   // Display configuration form
   return htm`
@@ -39,9 +54,7 @@ module.exports = ({
         value="${zeitNowSecretForGoogleAnalyticsTrackingID}" />
     </Box>
     <Box paddingTop="22px" paddingLeft="17%">
-      <Button action="${
-        supportedActions['create-ga-secret']
-      }">Save</Button>
+      <Button action="${supportedActions['create-ga-secret']}">Save</Button>
     </Box>
   `
 }
