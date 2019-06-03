@@ -5,8 +5,7 @@ const log = require('../../../../../lib/log/log')
 const ProjectSelector = require('../../../components/ProjectSelector')
 const ProjectConfiguration = require('../../../components/ProjectConfiguration')
 
-// TODO: Add zeitClient prop
-module.exports = ({ clientState, payload, action }) => {
+module.exports = ({ clientState, payload, action, zeitClient }) => {
   const { project, projectId } = payload
   const { "ga-tracking-id": trackingID, "zeit-now-secret": secretForZEITNow } = clientState
   const googleAnalyticsTrackingID = trackingID || ''
@@ -16,10 +15,12 @@ module.exports = ({ clientState, payload, action }) => {
   log.message({
     message: `${appIdentifier} rendering Google Analytics configuration`,
   })
+
   log.entity({
     obj: clientState,
     label: `${appIdentifier} renderGAConfiguration received clientState `,
   })
+
   // log.entity({ obj: payload, label: `${appIdentifier} renderGAConfiguration received payload ` })
   log.message({
     message: `${appIdentifier} renderGAConfiguration received payload
@@ -31,16 +32,19 @@ module.exports = ({ clientState, payload, action }) => {
     message: `${appIdentifier} renderGAConfiguration received
   action    -> ${action}`,
   })
-  // TODO: Add logging to verify zeitClient
+
+  // log.entity({ obj: zeitClient, label: `${appIdentifier} renderGAConfiguration received zeitClient ` })
+  log.message({ message: `${appIdentifier} renderGAConfiguration received zeitClient` })
 
   // Return our rendered content
-  // TODO: Pass zeitClient to ProjectConfiguration
   return htm`
   <${ProjectSelector} />
   <${ProjectConfiguration}
     action="${action}"
     projectID="${projectId}"
     googleAnalyticsTrackingID="${googleAnalyticsTrackingID}"
-    zeitNowSecretForGoogleAnalyticsTrackingID="${zeitNowSecretForGoogleAnalyticsTrackingID}" />
+    zeitNowSecretForGoogleAnalyticsTrackingID="${zeitNowSecretForGoogleAnalyticsTrackingID}"
+    zeitClient="${zeitClient}"
+  />
   `
 }

@@ -1,15 +1,16 @@
 const { htm } = require('@zeit/integration-utils')
 const { supportedActions, appIdentifier } = require('../lib/constants')
 const log = require('../../../lib/log/log')
-// TODO: Import zeit-now-api
-// const zeit = require('../../api/zeit/zeit-now-api')
 
-// TODO: Add zeitClient prop
+// API
+const zeit = require('../../../api/zeit/zeit-now-api')
+
 module.exports = ({
   action,
   projectID,
   googleAnalyticsTrackingID = '',
   zeitNowSecretForGoogleAnalyticsTrackingID = '',
+  zeitClient,
 }) => {
   // Do not display configuration form if a project has not been selected
   if (!projectID) return ''
@@ -19,8 +20,12 @@ module.exports = ({
   action  -> ${action}`})
 
   // TODO: Use newly created function to upsert our secret to ZEIT Now
-  // const deployments = await zeit.upsertSecret({ zeitClient })
-  // TODO: Don't forget to wrap await in a try...catch block
+  // TODO: Pass projectId, secret, and secretName props to zeit.upsertSecret
+  // try {
+  //   await zeit.upsertSecret({ zeitClient })
+  // } catch (error) {
+  //   log.error({ error })
+  // }
 
   // Display configuration form
   return htm`

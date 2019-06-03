@@ -1,7 +1,7 @@
 const getDeployments = require('./lib/getDeployments')
-// TODO: Create secret upsert function
+const upsertSecret = require('./lib/upsertSecret')
 
 module.exports = {
   getDeployments,
-  // TODO: Export upsert function
+  upsertSecret,
 }
